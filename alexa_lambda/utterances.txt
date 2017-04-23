@@ -1,0 +1,32 @@
+SetLevel Set Level {Level}
+SetLevel Level {Level}
+SetLevel {Level}
+Letters {Letter}
+Letters {Letter} {Letter}
+Letters {Letter} {Letter} {Letter}
+Letters {Letter} {Letter} {Letter} {Letter}
+Letters {Letter} {Letter} {Letter} {Letter} {Letter}
+Letters {Letter} {Letter} {Letter} {Letter} {Letter} {Letter}
+Letters {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter}
+Letters {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter}
+Letters {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter}
+Letters {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter}
+Letters {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter}
+Letters {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter}
+Letters {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter}
+Letters {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter}
+Letters {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter}
+Letters {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter} {Letter}
+ChangeIntent Change
+ScoreCheck What's my score
+ScoreCheck Tell me my score
+AMAZON.HelpIntent Tell me what level I am on
+AMAZON.HelpIntent What level am I on
+AMAZON.NoIntent No
+AMAZON.YesIntent Yes
+AMAZON.YesIntent Continue
+AMAZON.YesIntent continue
+AMAZON.YesIntent next word
+LevelStart start Kapeesh
+LevelStart start
+LevelStart Start

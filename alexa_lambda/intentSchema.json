@@ -1,0 +1,26 @@
+{
+    "intents": [ 
+    {
+        "intent": "SetLevel",
+        "slots": [ {
+            "name": "Level",
+            "type": "LEVEL_LIST"
+        } ] 
+    },
+    {
+        "intent": "Letters",
+        "slots": [ {
+            "name": "Letter",
+            "type": "LETTER_LIST"
+        }]
+    },
+        { "intent": "ChangeIntent"},
+        { "intent": "ScoreCheck"},
+        { "intent": "AMAZON.CancelIntent"},
+        { "intent": "AMAZON.HelpIntent"},
+        { "intent": "AMAZON.NoIntent"},
+        { "intent": "AMAZON.StopIntent"},
+        { "intent": "AMAZON.YesIntent"},
+        { "intent": "LevelStart"} 
+    ]
+}
