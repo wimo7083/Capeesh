@@ -1,11 +1,9 @@
 from app import db, models
 from db_change_methods import initialize_word_list as iwl
 import os
-import csv
-import sqlalchemy   
+import csv 
 
-def import_words(filename):
-        
+def import_words(filename):        
     with open(filename, 'r') as f:
         reader = csv.reader(f)
         words = list(reader)
@@ -15,10 +13,7 @@ def import_words(filename):
         print(level)
         for word in row[1:]:
             if word:
-                iwl(level,word)      
-        
-    
-    
+                iwl(level,word)     
     
     
 if __name__ == "__main__":
