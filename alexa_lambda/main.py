@@ -1,8 +1,9 @@
 
 from __future__ import print_function
+import requests
 
 # --------------- Helpers that build all of the responses ----------------------
-level_list = {
+levels_list = {
     "1" : {"hi", "you", "we" },
     "2" : {"butter", "beans", "chunks"},
     "3" : {"busy", "greatest", "fishing"}
@@ -10,6 +11,17 @@ level_list = {
 
 data = {}
 
+'''
+level_list = {
+    "2" : {"bake","rip","bee","like","blue","brown","made","hope","many","some","rule"},
+    "3" : {"also","clock","your","only","treat","said","gift","about","balloon","past","stopped","scream","walk" },
+    "4" : {"odd","zoo","alive","curl","felt","gain","dawn","dear","gold","path","safe","roof","aunt","self","tuna","few","zero","world","wait","uncle" },
+    "5" : {"state","repay","grasp","few","gold","soil","shelter","rising","trail","type","agreed","constant","forward","daytime","members","length" },
+    "6" : {"action","climate","express","increase","mammal","surface","gaze","teaspoon","simply","further","noisy","poem","gesture","heroes","squawk","bough","solar","grief" },
+    "7" : {future,music,women,sincerely,paragraph,stomach,terrible,unknown,science,tutor,beautifully,therefore,rhythm,disagreement,fierce,forgiveness,potatoes },
+    "8" : { }
+}
+'''
 five_set = ["busy", "grips", "flipper", "please", "flower"]
 counter = 0
 score = 0
@@ -66,8 +78,8 @@ def get_started_response(intent, session):
     data['Level'] = -1
     data['Score'] = 0
 
-    speech_output = "Please tell me the grade level spelling you want to start at by saying Level then a number from 1 to 3" 
-    reprompt_text = "Please tell me the grade level spelling you want to start at by saying Level then a number from 1 to 3"
+    speech_output = "Please tell me the grade level spelling you want to start at by saying Level then a number from 2 to 8" 
+    reprompt_text = "Please tell me the grade level spelling you want to start at by saying Level then a number from 2 to 8"
 
     return build_response(None, build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
@@ -81,7 +93,7 @@ def handle_level_response(intent, session):
     should_end_session = False
     #session['attributes'] = {}
     current_level = intent['slots']['Level']
-    nums = ["1", "2", "3"]
+    nums = ["2", "3", "4", "5", "6", "7", "8"]
     if current_level['value'] in nums: 
         level = current_level['value']
         data['Level'] = level
@@ -90,8 +102,8 @@ def handle_level_response(intent, session):
         card_title = level
     else:
         #session_attributes = create_level_attributes(current_level)
-        speech_output = "That level is not represented. Please choose a level from 1 to 3."
-        reprompt_text = "Try another level from 1 to 3"
+        speech_output = "That level is not represented. Please choose a level from 2 to 8."
+        reprompt_text = "Try another level from 2 to 8"
         card_title = "Invalid Level"
 
     return build_response(None, build_speechlet_response(
@@ -99,7 +111,7 @@ def handle_level_response(intent, session):
 
 def handler_change_response(intent, session):
     card_title = "Change"
-    speech_output = "What level do you want to change to? Say Level followed by a number from 1 to 3"
+    speech_output = "What level do you want to change to? Say Level followed by a number from 2 to 8"
     reprompt_text = speech_output
     should_end_session = False
 
@@ -110,7 +122,9 @@ def handler_change_response(intent, session):
 
 #def each_word_output()
 def handler_yes_response(intent, session):
-    global counter, data
+    global counter, data, five_set
+    r = requests.get('http://cap-env.fjfh7pzjsy.us-west-1.elasticbeanstalk.com/fivewords/' + str(data['Level']))
+    five_set = r.json()['results']
     card_title = "Yes"
     word = five_set[counter]
 
@@ -131,6 +145,9 @@ def handle_letters_response(word_list, intent, session):
     counter += 1
     if counter == 5:
         counter = 0
+        r = requests.get('http://cap-env.fjfh7pzjsy.us-west-1.elasticbeanstalk.com/fivewords/' + str(data['Level']))
+        word_list = r.json()['results']
+
 
     if word.lower() == concat_guess.lower():
         score += 1
@@ -142,6 +159,14 @@ def handle_letters_response(word_list, intent, session):
         + word_list[counter]  #+ " " + str(len(word)) + " vs. " + str(len(concat_guess))
         score -= 1
         reprompt_text = speech_output
+
+    if score >= 5:
+        data['Level'] += 1
+        score = 0
+    if score <= -5:
+        data['Level'] -= 1
+        score = 0
+    
 
     return build_response(None, build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
