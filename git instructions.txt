@@ -1,0 +1,20 @@
+git:
+// shows branches and current
+
+git branch
+
+// git status
+
+// git change branch
+git checkout <branch>
+
+git add to commit
+
+git add *
+
+git commit branch master
+
+//check wher epushing too
+git remove -v 
+
+git push origin master
